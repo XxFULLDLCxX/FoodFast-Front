@@ -1,8 +1,12 @@
 import { GiCakeSlice, GiFrenchFries, GiHamburger, GiSodaCan } from 'react-icons/gi';
 import utils, { DetailsH3, TitleH2 } from '../../assets/styles/Utils';
 import styled from 'styled-components';
+import { useEffect } from 'react';
 
 export default function Categories() {
+  useEffect(() => {
+    
+  })
   return (
     <CategoriesContainer>
       <TitleH2>Categorias</TitleH2>
