@@ -1,51 +1,30 @@
-# Weather - Front
+# React + TypeScript + Vite
 
-<details>
-  <summary>English Version</summary>
-  <hr>
-  This is a front-end application that utilizes the OpenWeatherMap API to fetch weather information for any city in the world. It also features a Recharts graph for visual representation of the data.
-  <hr>
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Deployed on Vercel: [weather-front-444c43.vercel.app](https://weather-front-444c43.vercel.app)
+Currently, two official plugins are available:
 
-  <hr/>
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-### - How to run locally:
+## Expanding the ESLint configuration
 
-```bash
-npm i
-```
-#### Copy the `.env.example` and set your key in your `.env`
+If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-```bash
-npm run dev
-```
+- Configure the top-level `parserOptions` property like this:
 
-<hr>
-<hr>
-<hr>
-
-</details>
-
-Aplicação Front que consume a OpenWeatherMap e para obter informações sobre o clima de qualquer cidade do mundo, há também a presença de um gráfico recharts.
-
-<hr>
-
-Deploy on Vercel: [weather-front-444c43.vercel.app](https://weather-front-444c43.vercel.app)
-
-<hr>
-
-### - Como rodar localmente:
-
-```bash
-npm i
-```
-#### Siga o `.env.example` e defina sua key no seu `.env`
-
-```bash
-npm run dev
+```js
+export default {
+  // other rules...
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: ['./tsconfig.json', './tsconfig.node.json'],
+    tsconfigRootDir: __dirname,
+  },
+}
 ```
 
-<hr>
-<hr>
-<hr>
+- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
+- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
+- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list

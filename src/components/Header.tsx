@@ -7,29 +7,43 @@ export default function Header() {
   const location = useLocation();
   return (
     <HeaderContainer>
-      <Logo>
+      <div>
         <div>
-          <PiHamburgerDuotone />
+          <Logo>
+            <div>
+              <PiHamburgerDuotone />
+            </div>
+            <h2>fastfood</h2>
+          </Logo>
+          <Nav>
+            <StyledLink $isActive={location.pathname === '/orders'} to="/orders">
+              Pedidos
+            </StyledLink>
+            <StyledLink $isActive={location.pathname === '/kitchen'} to="/kitchen">
+              Cozinha
+            </StyledLink>
+            <StyledLink $isActive={location.pathname === '/pickup'} to="/pickup">
+              Retirada
+            </StyledLink>
+          </Nav>
         </div>
-        <h2>fastfood</h2>
-      </Logo>
-      <Nav>
-        <StyledLink $isActive={location.pathname === '/orders'} to="/orders">
-          Pedidos
-        </StyledLink>
-        <StyledLink $isActive={location.pathname === '/kitchen'} to="/kitchen">
-          Cozinha
-        </StyledLink>
-        <StyledLink $isActive={location.pathname === '/pickup'} to="/pickup">
-          Retirada
-        </StyledLink>
-      </Nav>
+      </div>
     </HeaderContainer>
   );
 }
 
 const HeaderContainer = styled.header`
   position: relative;
+  z-index: 1;
+  height: 48px;
+  > div {
+    position: fixed;
+    width: 100%;
+    top: 0;
+  }
+  > div > div {
+    position: relative;
+  }
 `;
 
 const Logo = styled.div`

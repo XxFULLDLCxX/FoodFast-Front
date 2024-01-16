@@ -1,21 +1,15 @@
 import styled, { css } from 'styled-components';
+import { ProductParams } from '../../utils/protocols';
 
-type ProductParams = {
-  name: string;
-  image: string;
-  banner?: string;
-  price: number;
-  description: string;
-};
-
-export default function Product({ name, image, banner, description, price }: ProductParams) {
-  const formatedPrice = (price / 100).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+export default function Product({ data }: { data: ProductParams }) {
+  const formatedPrice = (data.price / 100).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+  
   return (
-    <ProductContainer $banner={banner}>
-      <img src={image} alt="" />
+    <ProductContainer $banner={data.banner}>
+      <img src={data.image} alt="" />
       <div>
-        <h2>{name}</h2>
-        <p>{description.slice(-1 - description.indexOf(','))}</p>
+        <h2>{data.name}</h2>
+        <p>{data.teaser}</p>
         <h3>R${formatedPrice}</h3>
       </div>
     </ProductContainer>
@@ -79,6 +73,7 @@ const ProductContainer = styled.li<{ $banner?: string }>`
     left: 0px;
     right: 0px;
     margin: auto;
-    width: 124px;
+    width: 100px;
+    border-radius: 25%;
   }
 `;
