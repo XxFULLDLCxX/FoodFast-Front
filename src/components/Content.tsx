@@ -5,13 +5,13 @@ export default function Content({ children }: { children?: React.ReactNode }) {
   return (
     <Container>
       <Header />
-      <main>{children}</main>
+      <article>{children}</article>
     </Container>
   );
 }
 
 const Container = styled.div`
-  > main {
+> article {
     max-width: 1100px;
     margin: auto;
     margin-top: 40px;
