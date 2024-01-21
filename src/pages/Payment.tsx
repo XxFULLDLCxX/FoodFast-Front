@@ -7,7 +7,7 @@ import { useOrdersContext } from '../utils/context';
 import { formatedPrice } from '../utils/utils';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { PaymentDialog } from '../components/orders/payment/PaymentDialog';
+import { PaymentDialog } from '../components/Orders/payment/PaymentDialog';
 
 export default function Payments() {
   const { order } = useOrdersContext();

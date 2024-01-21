@@ -1,7 +1,7 @@
 import Content from '../components/Content';
-import Products from '../components/orders/Products';
-import Categories from '../components/orders/Categories';
-import Search from '../components/orders/Search';
+import Products from '../components/Orders/Products';
+import Categories from '../components/Orders/Categories';
+import Search from '../components/Orders/Search';
 import { useState } from 'react';
 
 export default function Orders() {

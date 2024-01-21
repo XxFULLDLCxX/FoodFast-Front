@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Content from '../components/Content';
-import { Preparing } from '../components/kitchen/Preparing';
-import { Ready } from '../components/kitchen/Ready';
+import { Preparing } from '../components/Kitchen/Preparing';
+import { Ready } from '../components/Kitchen/Ready';
 
 export default function Kitchen() {
   return (
