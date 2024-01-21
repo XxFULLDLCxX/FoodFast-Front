@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { getProductAdditionals } from '../../services/ordersApi';
-import { AdditionalsParams } from '../../utils/protocols';
-import { useOrdersContext } from '../../utils/context';
+import { getProductAdditionals } from '../../../services/ordersApi';
+import { AdditionalsParams } from '../../../utils/protocols';
+import { useOrdersContext } from '../../../utils/context';
 
 type AdditionalsProps = {
   productId: number;
@@ -31,7 +31,7 @@ export function Additionals({ productId }: AdditionalsProps) {
 export function Additional({ data: { id, price, name, ...data } }: AdditionalProps) {
   const formatedPrice = (price / 100).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
   const { order, setOrder } = useOrdersContext();
-  const [ checked, isChecked ] = useState(false);
+  const [checked, isChecked] = useState(false);
   const handleClick = (e: React.ChangeEvent<HTMLInputElement>) => {
     isChecked(e.target.checked);
     if (e.target.checked) {
@@ -79,7 +79,7 @@ const AdditionalContainer = styled.label<{ $checked: boolean }>`
     font-weight: 700;
     font-size: 14px;
     letter-spacing: 0.02em;
-    color: ${({ $checked }) => ($checked ?  '#000000': '#9f9f9f')};
+    color: ${({ $checked }) => ($checked ? '#000000' : '#9f9f9f')};
   }
   input {
     flex-shrink: 0;
