@@ -30,6 +30,7 @@ export default function Categories() {
 }
 
 const CategoriesContainer = styled.div`
+  height: min-content;
   ul {
     padding: 5px 5px;
     width: 100%;

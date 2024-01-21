@@ -6,7 +6,7 @@ import { useOrdersContext } from '../../utils/context';
 export default function Search() {
   const [isVisible, setIsVisible] = useState(false);
   const h1Ref = useRef<HTMLHeadingElement>(null);
-  const handleScroll = () => setIsVisible(window.scrollY > 250);
+  const handleScroll = () => setIsVisible(window.scrollY > 250);    
   const [value, setValue] = useState('');
   const { setProducts } = useOrdersContext();
 
@@ -62,7 +62,7 @@ const SearchContainer = styled.form<{ $isVisible: boolean }>`
       if ($isVisible)
         return css`
           position: fixed;
-          z-index: 1;
+          z-index: 5;
           top: 3px;
           left: 0px;
           right: 0px;

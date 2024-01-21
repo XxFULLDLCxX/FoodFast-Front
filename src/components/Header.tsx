@@ -34,7 +34,7 @@ export default function Header() {
 
 const HeaderContainer = styled.header`
   position: relative;
-  z-index: 1;
+  z-index: 3;
   height: 48px;
   > div {
     position: fixed;

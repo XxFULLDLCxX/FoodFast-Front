@@ -19,21 +19,24 @@ export default function Category({ data }: { data: CategoryParams }) {
 const CategoryContainer = styled.li`
   ${utils.center}
   flex-direction: column;
+  flex-shrink: 0;
   gap: 7px;
-  min-width: 205px;
-  min-height: 100px;
+  min-width: 221px;
+  min-height: 145px;
   max-width: 310px;
   max-height: 205px;
+  height: min-content;
   border-radius: 5px;
   box-shadow: 1px 3px 10px 0px rgba(0, 0, 0, 0.09);
   h3 {
     font-size: 18px;
     font-weight: 600;
     letter-spacing: 0.04em;
+    margin-bottom: 28px;
   }
   img {
     width: 50%;
-    height: 50%;
+    height: 72px;
     object-position: center;
     object-fit: contain;
   }

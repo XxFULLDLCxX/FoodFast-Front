@@ -1,79 +1,86 @@
 import styled, { css } from 'styled-components';
 import { ProductParams } from '../../utils/protocols';
+import { FaCheck } from 'react-icons/fa6';
+import ProductDetails from '../tooltip/ProductDetails';
+import { useState } from 'react';
+import { ProductBanner } from './product/Banner';
+import { useOrdersContext } from '../../utils/context';
 
-export default function Product({ data }: { data: ProductParams }) {
+type ProductProps = {
+  data: ProductParams;
+  isInOrder: boolean;
+  line: number;
+  setInOrder: React.Dispatch<React.SetStateAction<number[]>>;
+};
+
+export default function Product({ data, line, isInOrder }: ProductProps) {
+  const colors = ['#f96666', '#125c13', '#ffeb70'];
+  const bg = colors[line % colors.length];
   const formatedPrice = (data.price / 100).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
-  
+  const [isSelected, setIsSelected] = useState(data.id === 170);
+  const { order, setOrder } = useOrdersContext();
+  const press = () => {
+    setIsSelected(true);
+    setOrder((prev) => ({ ...prev, name: data.name, price: data.price }));
+  };
   return (
-    <ProductContainer $banner={data.banner}>
-      <img src={data.image} alt="" />
-      <div>
-        <h2>{data.name}</h2>
-        <p>{data.teaser}</p>
-        <h3>R${formatedPrice}</h3>
-      </div>
-    </ProductContainer>
+    <>
+      {isSelected && <ProductDetails data={data} bg={bg} setIsSelected={setIsSelected} />}
+      <ProductBanner $banner={data.banner} $bg={bg} onClick={press}>
+        {isSelected && (
+          <Selected>
+            <FaCheck />
+          </Selected>
+        )}
+        <img src={data.image} alt="" />
+        <Details>
+          <h2>{data.name}</h2>
+          <p>{data.teaser}</p>
+          <h3>R${formatedPrice}</h3>
+        </Details>
+      </ProductBanner>
+    </>
   );
 }
 
-const ProductContainer = styled.li<{ $banner?: string }>`
-  flex: 1 1 25%;
-  position: relative;
-  max-width: 200px;
-  height: 245px;
-  ${({ $banner }) =>
-    $banner
-      ? css`
-          background-image: url(${$banner});
-          background-position: 0px 0px;
-          background-size: contain;
-          background-repeat: no-repeat;
-        `
-      : Array.from(
-          { length: 12 },
-          (_, i) => `
-            &:nth-child(12n + ${i + 1}) {
-              background: ${['#f96666', '#125c13', '#ffeb70'][Math.floor(i / 4)]};
-            }
-          `
-        ).join('')}
-  box-shadow: 0px 3px 10px 1px rgba(0, 0, 0, 0.2);
-  border-radius: 15px;
-  padding-top: 70px;
-  div {
-    background-color: #ffffff;
-    border-radius: 15px;
-    height: 100%;
-    padding-top: 55px;
-    h2 {
-      font-weight: 700;
-      font-size: 14px;
-      text-align: center;
-      letter-spacing: 0.02em;
-    }
-    p {
-      margin-top: 10px;
-      font-weight: 300;
-      font-size: 10px;
-      text-align: center;
-      letter-spacing: 0.04em;
-    }
-    h3 {
-      margin-top: 30px;
-      font-weight: 700;
-      font-size: 14px;
-      text-align: center;
-      letter-spacing: 0.02em;
-    }
-  }
-  img {
+const Selected = styled.main`
+  > svg {
     position: absolute;
-    object-fit: cover;
-    top: 10px;
-    left: 0px;
-    right: 0px;
-    margin: auto;
-    width: 100px;
-    border-radius: 25%;
+    font-size: 32px;
+    color: #ffffff;
+  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  border-radius: 15px;
+  z-index: 1;
+  position: absolute;
+  bottom: 0px;
+  background-color: #008800b3;
+`;
+
+const Details = styled.div`
+  padding-top: 55px;
+  h2 {
+    font-weight: 700;
+    font-size: 14px;
+    text-align: center;
+    letter-spacing: 0.02em;
+  }
+  p {
+    margin-top: 10px;
+    font-weight: 300;
+    font-size: 10px;
+    text-align: center;
+    letter-spacing: 0.04em;
+  }
+  h3 {
+    margin-top: 30px;
+    font-weight: 700;
+    font-size: 14px;
+    text-align: center;
+    letter-spacing: 0.02em;
   }
 `;
