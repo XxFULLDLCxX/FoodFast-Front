@@ -5,101 +5,107 @@ import { IoIosCard } from 'react-icons/io';
 import styled from 'styled-components';
 import { useOrdersContext } from '../utils/context';
 import { formatedPrice } from '../utils/utils';
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { PaymentDialog } from '../components/orders/payment/PaymentDialog';
 
 export default function Payments() {
   const { order } = useOrdersContext();
   const totalPrice = order.price + order.additionals.reduce((n, m) => n + m.price, 0);
   const handleClick = () => {};
   const navigate = useNavigate();
+  const [select, setSelect] = useState(false);
   const press = () => {
-    navigate('/kitchen');
+    setSelect((prev) => !prev);
+    // navigate('/kitchen');
   };
   return (
-    <Content>
-      <Header>
-        <h1>
-          <FaMoneyCheck clasName="icon" />
-          Pagamentos
-        </h1>
-      </Header>
-      <Main>
-        <section>
-          <h2>Resumo da compra</h2>
-          <div className="order">
-            <ul>
-              <li>
-                {order.quantity}x {order.name} <span>R${formatedPrice(order.price)}</span>
-              </li>
-              {order.additionals.map((additional, i) => (
-                <React.Fragment key={additional.id}>
-                  <li>
-                    {additional.name}
-                    <span>{formatedPrice(additional.price)}</span>
-                  </li>
-                </React.Fragment>
-              ))}
-            </ul>
+    <>
+      {select && <PaymentDialog />}
+      <Content>
+        <Header>
+          <h1>
+            <FaMoneyCheck clasName="icon" />
+            Pagamentos
+          </h1>
+        </Header>
+        <Main>
+          <section>
+            <h2>Resumo da compra</h2>
+            <div className="order">
+              <ul>
+                <li>
+                  {order.quantity}x {order.name} <span>R${formatedPrice(order.price)}</span>
+                </li>
+                {order.additionals.map((additional, i) => (
+                  <React.Fragment key={additional.id}>
+                    <li>
+                      {additional.name}
+                      <span>{formatedPrice(additional.price)}</span>
+                    </li>
+                  </React.Fragment>
+                ))}
+              </ul>
 
-            <div>
-              <p>Total do Pedido: </p>
-              <h3>R${formatedPrice(totalPrice)} </h3>
+              <div>
+                <p>Total do Pedido: </p>
+                <h3>R${formatedPrice(totalPrice)} </h3>
+              </div>
             </div>
-          </div>
-          <div className="nv-2c user">
-            <div>
-              <label htmlFor="username">Nome do cliente</label>
-              <input type="text" name="" id="username" placeholder="Primeiro nome" />
+            <div className="nv-2c user">
+              <div>
+                <label htmlFor="username">Nome do cliente</label>
+                <input type="text" name="" id="username" placeholder="Primeiro nome" />
+              </div>
+              <div>
+                <label htmlFor="code">Código</label>
+                <input type="number" name="" id="code" placeholder="200" />
+              </div>
             </div>
-            <div>
-              <label htmlFor="code">Código</label>
-              <input type="number" name="" id="code" placeholder="200" />
+          </section>
+          <section>
+            <h2>Selecione a forma de pagamento</h2>
+            <ul className="payment">
+              <li>
+                <label htmlFor="debit">
+                  <IoIosCard className="icon" />
+                  Débito
+                  <input type="checkbox" id="debit" onChange={handleClick} />
+                </label>
+              </li>
+              <li>
+                <label htmlFor="credit">
+                  <IoIosCard className="icon" />
+                  Crédito
+                  <input type="checkbox" id="credit" onChange={handleClick} />
+                </label>
+              </li>
+              <li>
+                <label htmlFor="money">
+                  <FaMoneyBill1 className="icon" />
+                  Dinheiro
+                  <input type="checkbox" id="money" onChange={handleClick} />
+                </label>
+              </li>
+            </ul>
+            <div className="nv-2c">
+              <div>
+                <label htmlFor="paid">Valor entregue</label>
+                <input type="text" name="" id="paid" placeholder="R$ 0,00" />
+              </div>
+              <div>
+                <label htmlFor="code">Troco</label>
+                <input type="number" name="" id="code" placeholder="R$ 0,00" />
+              </div>
             </div>
-          </div>
-        </section>
-        <section>
-          <h2>Selecione a forma de pagamento</h2>
-          <ul className="payment">
-            <li>
-              <label htmlFor="debit">
-                <IoIosCard className="icon" />
-                Débito
-                <input type="checkbox" id="debit" onChange={handleClick} />
-              </label>
-            </li>
-            <li>
-              <label htmlFor="credit">
-                <IoIosCard className="icon" />
-                Crédito
-                <input type="checkbox" id="credit" onChange={handleClick} />
-              </label>
-            </li>
-            <li>
-              <label htmlFor="money">
-                <FaMoneyBill1 className="icon" />
-                Dinheiro
-                <input type="checkbox" id="money" onChange={handleClick} />
-              </label>
-            </li>
-          </ul>
-          <div className="nv-2c">
-            <div>
-              <label htmlFor="paid">Valor entregue</label>
-              <input type="text" name="" id="paid" placeholder="R$ 0,00" />
-            </div>
-            <div>
-              <label htmlFor="code">Troco</label>
-              <input type="number" name="" id="code" placeholder="R$ 0,00" />
-            </div>
-          </div>
-        </section>
-      </Main>
-      <Footer>
-        <button>Cancelar</button>
-        <button onClick={press}>Finalizar pedido</button>
-      </Footer>
-    </Content>
+          </section>
+        </Main>
+        <Footer>
+          <button>Cancelar</button>
+          <button onClick={press}>Finalizar pedido</button>
+        </Footer>
+      </Content>
+    </>
   );
 }
 

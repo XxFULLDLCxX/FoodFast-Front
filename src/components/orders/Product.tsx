@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { ProductParams } from '../../utils/protocols';
 import { FaCheck } from 'react-icons/fa6';
-import ProductDetails from '../tooltip/ProductDetails';
+import ProductDetails from '../DialogBox/ProductDetails';
 import { useState } from 'react';
 import { ProductBanner } from './product/Banner';
 import { useOrdersContext } from '../../utils/context';
