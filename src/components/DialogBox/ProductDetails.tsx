@@ -177,7 +177,9 @@ const Notes = styled.div`
     margin-top: 14px;
     padding: 20px;
     background-color: #f4f4f4;
-    color: #a2a2a2;
+    &::placeholder {
+      color: #a2a2a2;
+    }
     width: 100%;
     height: 113px;
   }
