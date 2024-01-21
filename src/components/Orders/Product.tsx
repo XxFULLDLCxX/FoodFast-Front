@@ -3,8 +3,9 @@ import { ProductParams } from '../../utils/protocols';
 import { FaCheck } from 'react-icons/fa6';
 import ProductDetails from '../DialogBox/ProductDetails';
 import { useState } from 'react';
-import { ProductBanner } from './product/Banner';
+import { ProductBanner } from './Products/Banner';
 import { useOrdersContext } from '../../utils/context';
+import { DetailsDialog } from './OrderDetails/DetailsDialog';
 
 type ProductProps = {
   data: ProductParams;
@@ -25,7 +26,7 @@ export default function Product({ data, line, isInOrder }: ProductProps) {
   };
   return (
     <>
-      {isSelected && <ProductDetails data={data} bg={bg} setIsSelected={setIsSelected} />}
+      {isSelected && <DetailsDialog product={data} bg={bg} setIsSelected={setIsSelected} />}
       <ProductBanner $banner={data.banner} $bg={bg} onClick={press}>
         {isSelected && (
           <Selected>
