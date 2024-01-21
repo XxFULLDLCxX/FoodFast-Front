@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FaXmark, FaPlus, FaMinus } from 'react-icons/fa6';
 import { createGlobalStyle, styled } from 'styled-components';
 import { AdditionalsParams, ProductParams } from '../../utils/protocols';
-import { ProductBanner, ProductBannerProps, type } from '../orders/product/Banner';
+import { ProductBanner, ProductBannerProps, type } from '../Orders/product/Banner';
 import { Additionals } from './Additionals';
 import { useOrdersContext } from '../../utils/context';
 import { defaultOrder } from '../../utils/defauts';
