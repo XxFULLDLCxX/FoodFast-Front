@@ -14,3 +14,38 @@ export type ProductParams = {
   details: string;
   categoryId: number;
 };
+
+export type AdditionalsParams = {
+  id: number;
+  name: string;
+  image: string;
+  price: number;
+  info: string;
+  productId: number;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
+export type OrderParams = {
+  additionals: Pick<AdditionalsParams, 'id' | 'price' | 'name'>[];
+  name: string;
+  note: string;
+  code: number;
+  price: number;
+  quantity: number;
+};
+
+export type OrdersParams = {
+  name: string;
+  price: number;
+  quantity: number;
+  productId: number;
+}
+
+export type PaymentsParams = {
+  code: number;
+  total: number;
+  status: 'PAID' | 'PEDDING';
+  change: number;
+  userId: number;
+}

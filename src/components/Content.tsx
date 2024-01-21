@@ -11,7 +11,7 @@ export default function Content({ children }: { children?: React.ReactNode }) {
 }
 
 const Container = styled.div`
-  main {
+  > main {
     max-width: 1100px;
     margin: auto;
     margin-top: 40px;

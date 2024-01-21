@@ -1,4 +1,4 @@
-import { CategoryParams, ProductParams } from '../utils/protocols';
+import { AdditionalsParams, CategoryParams, OrderParams, OrdersParams, ProductParams } from '../utils/protocols';
 import instance from './api';
 
 export async function getCategories() {
@@ -15,4 +15,16 @@ export async function getProductsBySearch(value: string) {
 
 export async function getProductsByCategory(id: number): Promise<ProductParams[]> {
   return (await instance.get(`/categories/${id}`)).data?.products;
+}
+
+export async function getProductAdditionals(productId: number) {
+  return (await instance.get<AdditionalsParams[]>(`/products/${productId}/additionals`)).data;
+}
+
+export async function postOrders(params: OrdersParams) {
+  return (await instance.post(`/orders`, params))
+}
+
+export async function postPayments(params: PaymentsParams) {
+  return (await instance.post(`/orders`, params))
 }

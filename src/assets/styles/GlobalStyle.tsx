@@ -12,7 +12,9 @@ const GlobalStyle = createGlobalStyle`
     min-height: 100dvh;
     background-color: #ffffff;
   }
-
+  ::-webkit-scrollbar {
+    width: 0;
+  } 
   * {
     margin: 0;
     padding: 0;
@@ -32,4 +34,4 @@ const GlobalStyle = createGlobalStyle`
 
 `;
 
-export default GlobalStyle
+export default GlobalStyle;
