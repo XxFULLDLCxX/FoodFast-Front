@@ -1,5 +1,3 @@
-import combo from '../../assets/images/categories/combo.png';
-
 import { FaXmark, FaCheck } from 'react-icons/fa6';
 import styled, { css } from 'styled-components';
 

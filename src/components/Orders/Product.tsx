@@ -1,7 +1,6 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { ProductParams } from '../../utils/protocols';
 import { FaCheck } from 'react-icons/fa6';
-import ProductDetails from '../DialogBox/ProductDetails';
 import { useState } from 'react';
 import { ProductBanner } from './Products/Banner';
 import { useOrdersContext } from '../../utils/context';
@@ -14,12 +13,12 @@ type ProductProps = {
   setInOrder: React.Dispatch<React.SetStateAction<number[]>>;
 };
 
-export default function Product({ data, line, isInOrder }: ProductProps) {
+export default function Product({ data, line }: ProductProps) {
   const colors = ['#f96666', '#125c13', '#ffeb70'];
   const bg = colors[line % colors.length];
   const formatedPrice = (data.price / 100).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
   const [isSelected, setIsSelected] = useState(data.id === 170);
-  const { order, setOrder } = useOrdersContext();
+  const { setOrder } = useOrdersContext();
   const press = () => {
     setIsSelected(true);
     setOrder((prev) => ({ ...prev, name: data.name, price: data.price }));

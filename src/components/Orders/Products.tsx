@@ -4,7 +4,6 @@ import { DetailsH3, TitleH2 } from '../../assets/styles/Utils';
 import { getProducts } from '../../services/ordersApi';
 import Product from './Product';
 import { useOrdersContext } from '../../utils/context';
-import ProductDetails from '../DialogBox/ProductDetails';
 import { ProductParams } from '../../utils/protocols';
 
 export default function Products() {

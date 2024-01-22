@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom';
 import styled, { createGlobalStyle } from 'styled-components';
 import Content from './Content';
 
@@ -7,10 +6,6 @@ type DialogProps = {
 };
 
 export default function Dialog({ children }: DialogProps) {
-  const navigate = useNavigate();
-  const press = (e: React.MouseEvent) => {
-    e.stopPropagation();
-  };
   return (
     <Container>
       <GlobalStyle />
