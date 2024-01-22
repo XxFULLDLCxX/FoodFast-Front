@@ -17,7 +17,7 @@ export default function Payments() {
   const [select, setSelect] = useState(false);
   const press = () => {
     setSelect((prev) => !prev);
-    // navigate('/kitchen');
+    navigate('/kitchen');
   };
   return (
     <>
@@ -37,7 +37,7 @@ export default function Payments() {
                 <li>
                   {order.quantity}x {order.name} <span>R${formatedPrice(order.price)}</span>
                 </li>
-                {order.additionals.map((additional, i) => (
+                {order.additionals.map((additional) => (
                   <React.Fragment key={additional.id}>
                     <li>
                       {additional.name}

@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-type ConfirmProps = {};
+// type ConfirmProps = {};
 
-export function Confirm({}: ConfirmProps) {
+export function Confirm() {
   const addOrder = () => {
     
   };

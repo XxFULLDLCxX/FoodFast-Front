@@ -3,10 +3,10 @@ import { formatedPrice } from '../../../utils/utils';
 import React from 'react';
 import { useOrdersContext } from '../../../utils/context';
 
-type OrderProps = {};
+// type OrderProps = {};
 
-export function Order({}: OrderProps) {
-  const { order, setOrder } = useOrdersContext();
+export function Order() {
+  const { order } = useOrdersContext();
   const totalPrice = order.price + order.additionals.reduce((n, m) => n + m.price, 0);
   return (
     <Container>

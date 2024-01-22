@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import { useOrdersContext } from '../../../utils/context';
 
-type NotesProps = {};
+// type NotesProps = {};
 
-export function Notes({}: NotesProps) {
-  const { order, setOrder } = useOrdersContext();
+export function Notes() {
+  const { setOrder } = useOrdersContext();
 
   return (
     <Container>

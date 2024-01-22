@@ -30,7 +30,7 @@ export function Additionals({ productId }: AdditionalsProps) {
 
 export function Additional({ data: { id, price, name, ...data } }: AdditionalProps) {
   const formatedPrice = (price / 100).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
-  const { order, setOrder } = useOrdersContext();
+  const { setOrder } = useOrdersContext();
   const [checked, isChecked] = useState(false);
   const handleClick = (e: React.ChangeEvent<HTMLInputElement>) => {
     isChecked(e.target.checked);

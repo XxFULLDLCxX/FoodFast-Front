@@ -1,4 +1,4 @@
-import { AdditionalsParams, CategoryParams, OrderParams, OrdersParams, ProductParams } from '../utils/protocols';
+import { AdditionalsParams, CategoryParams, OrdersParams, PaymentsParams, ProductParams } from '../utils/protocols';
 import instance from './api';
 
 export async function getCategories() {

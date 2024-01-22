@@ -1,5 +1,3 @@
-import { FaXmark } from 'react-icons/fa6';
-import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 type ContentProps = {
@@ -7,10 +5,6 @@ type ContentProps = {
 };
 
 export default function Content({ children }: ContentProps) {
-  const navigate = useNavigate();
-  const press = (e: React.MouseEvent) => {
-    e.stopPropagation();
-  };
   return (
     <Container>
       {children}
