@@ -50,8 +50,7 @@ const Container = styled.div`
 `;
 
 const Banner = styled(ProductBanner)<ProductBannerProps>`
-  flex: 0 0 100%;
-  width: 200px;
+  width: 201px;
   height: 165px;
 `;
 
@@ -77,10 +76,11 @@ const Details = styled.div`
     top: 0px;
     right: 0px;
     margin-left: auto;
+    margin-right: 66px;
     align-self: flex-start;
     width: max-content;
     font-weight: 700;
-    font-size: 16px;
+    font-size: 18px;
     letter-spacing: 0.02em;
   }
 `;

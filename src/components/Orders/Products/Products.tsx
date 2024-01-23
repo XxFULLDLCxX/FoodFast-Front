@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { DetailsH3, TitleH2 } from '../../assets/styles/Utils';
-import { getProducts } from '../../services/ordersApi';
+import { DetailsH3, TitleH2 } from '../../../assets/styles/Utils';
+import { getOrdersByCode, getProducts } from '../../../services/ordersApi';
 import Product from './Product';
-import { useOrdersContext } from '../../utils/context';
-import { ProductParams } from '../../utils/protocols';
+import { useOrdersContext } from '../../../utils/context';
+import { ProductParams } from '../../../utils/protocols';
+import { Orders } from '../Orders';
 
 export default function Products() {
-  const { products, setProducts } = useOrdersContext();
+  const { products, payment, setProducts, order } = useOrdersContext();
   const [inOrder, setInOrder] = useState<number[]>([]);
 
   const rows: ProductParams[][] = Array.from({ length: Math.ceil(products.length / 4) }, () => []);
@@ -18,8 +19,13 @@ export default function Products() {
 
   useEffect(() => {
     getProducts().then(setProducts);
-    console.log(rows);
   }, []);
+
+  useEffect(() => {
+    if (payment.code !== 0) {
+      getOrdersByCode(payment.code).then((orders) => setInOrder(orders.map((o) => o.productId)));
+    }
+  }, [payment.code, order.additionals]);
 
   return (
     <ProductsContainer>
@@ -27,7 +33,7 @@ export default function Products() {
       <DetailsH3>Selecione um produto para adicionar ao seu pedido</DetailsH3>
       <div>
         {rows.map((row, line) => (
-          <ul key={line}>
+          <ul className="products" key={line}>
             {row.map((data) => (
               <Product
                 key={data.id}
@@ -40,13 +46,14 @@ export default function Products() {
           </ul>
         ))}
       </div>
+      <Orders />
     </ProductsContainer>
   );
 }
 
 const ProductsContainer = styled.div`
   padding-top: 64px;
-  > div > ul {
+  .products {
     padding: 20px;
     margin-left: -20px;
     overflow: auto;
