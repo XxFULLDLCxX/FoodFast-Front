@@ -21,10 +21,6 @@ export const defaultOrder: OrderParams = {
   productId: 0,
 };
 
-export const defaultOrders = () => {
-  getOrders()
-}
-
 export const defaultPayment = () => {
   const payment = localStorage.getItem('payment');
 

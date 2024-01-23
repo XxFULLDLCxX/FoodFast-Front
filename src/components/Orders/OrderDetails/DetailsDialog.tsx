@@ -7,6 +7,7 @@ import { Additionals } from './Additionals';
 import { Notes } from './Notes';
 import { Order } from './Order';
 import { Confirm } from './Confirm';
+import { useOrdersContext } from '../../../utils/context';
 
 type DetailsDialogProps = {
   product: ProductParams;
@@ -15,9 +16,11 @@ type DetailsDialogProps = {
 };
 
 export function DetailsDialog({ product, bg, setIsSelected }: DetailsDialogProps) {
+  const { setOrder } = useOrdersContext();
   const press = (e: React.MouseEvent) => {
     e.stopPropagation();
     setIsSelected(false);
+    setOrder((prev) => ({ ...prev, additionals: [] }));
   };
   return (
     <Dialog>
@@ -29,7 +32,7 @@ export function DetailsDialog({ product, bg, setIsSelected }: DetailsDialogProps
       <Additionals productId={product.id} />
       <Notes />
       <Order />
-      <Confirm />
+      <Confirm setIsSelected={setIsSelected} />
     </Dialog>
   );
 }

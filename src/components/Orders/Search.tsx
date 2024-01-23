@@ -6,16 +6,16 @@ import { useOrdersContext } from '../../utils/context';
 export default function Search() {
   const [isVisible, setIsVisible] = useState(false);
   const h1Ref = useRef<HTMLHeadingElement>(null);
-  // const handleScroll = () => setIsVisible(window.scrollY > 250);    
+  const handleScroll = () => setIsVisible(window.scrollY > 250);    
   const [value, setValue] = useState('');
   const { setProducts } = useOrdersContext();
 
-  // useEffect(() => {
-  //   window.addEventListener('scroll', handleScroll);
-  //   return () => {
-  //     window.removeEventListener('scroll', handleScroll);
-  //   };
-  // }, []);
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const press = (e: React.FormEvent) => {
     e.preventDefault();

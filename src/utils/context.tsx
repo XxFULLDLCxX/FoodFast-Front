@@ -20,7 +20,7 @@ type OrdersContextType = {
 const OrdersContext = createContext<OrdersContextType | undefined>(undefined);
 
 export function OrdersProvider({ children }: ProviderProps) {
-  const [user, setUser] = useState({ name: '' });
+  // const [user, setUser] = useState({ name: '' });
   const [products, setProducts] = useState<ProductParams[]>([]);
   const [orders, setOrders] = useState<OrdersParams[]>([]);
   const [order, setOrder] = useState<OrderParams>(defaultOrder);

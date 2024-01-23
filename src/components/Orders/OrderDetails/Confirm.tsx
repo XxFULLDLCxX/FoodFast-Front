@@ -1,15 +1,17 @@
 import styled from 'styled-components';
 import { postOrderAdditionals, postOrders, postPayments } from '../../../services/ordersApi';
 import { useOrdersContext } from '../../../utils/context';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { OrdersParams } from '../../../utils/protocols';
 
-// type ConfirmProps = {};
+type ConfirmProps = {
+  setIsSelected: React.Dispatch<React.SetStateAction<boolean>>;
+};
 type OrderResponse = OrdersParams & { id: number };
 
-export function Confirm() {
+export function Confirm({ setIsSelected }: ConfirmProps) {
   const [confirmOrder, setConfirmOrder] = useState<OrderResponse | undefined>(undefined);
-  const { payment, order, setPayment } = useOrdersContext();
+  const { payment, order, setPayment, setOrder } = useOrdersContext();
 
   const addPayment = () => {
     console.log(payment);
@@ -53,6 +55,8 @@ export function Confirm() {
     } else {
       addOrder();
     }
+    setIsSelected(false);
+    setOrder((prev) => ({ ...prev, additionals: [] }));
   };
   return (
     <Container>
