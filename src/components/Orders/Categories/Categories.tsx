@@ -1,8 +1,8 @@
-import { DetailsH3, TitleH2 } from '../../assets/styles/Utils';
+import { DetailsH3, TitleH2 } from '../../../assets/styles/Utils';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
-import { getCategories } from '../../services/ordersApi';
-import { CategoryParams } from '../../utils/protocols';
+import { getCategories } from '../../../services/ordersApi';
+import { CategoryParams } from '../../../utils/protocols';
 import Category from './Category';
 
 export default function Categories() {

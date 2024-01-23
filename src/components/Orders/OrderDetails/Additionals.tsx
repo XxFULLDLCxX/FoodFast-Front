@@ -77,8 +77,9 @@ const AdditionalContainer = styled.label<{ $checked: boolean }>`
   }
   h3 {
     font-weight: 700;
-    font-size: 14px;
+    font-size: 18px;
     letter-spacing: 0.02em;
+    margin-right: 35px;
     color: ${({ $checked }) => ($checked ? '#000000' : '#9f9f9f')};
   }
   input {

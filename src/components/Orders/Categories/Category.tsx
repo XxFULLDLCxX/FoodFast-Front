@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import utils from '../../assets/styles/Utils';
-import { defaultCategories } from '../../utils/defauts';
-import { CategoryParams } from '../../utils/protocols';
-import { useOrdersContext } from '../../utils/context';
-import { getProductsByCategory } from '../../services/ordersApi';
+import utils from '../../../assets/styles/Utils';
+import { defaultCategories } from '../../../utils/defauts';
+import { CategoryParams } from '../../../utils/protocols';
+import { useOrdersContext } from '../../../utils/context';
+import { getProductsByCategory } from '../../../services/ordersApi';
 
 export default function Category({ data }: { data: CategoryParams }) {
   const { setProducts } = useOrdersContext();

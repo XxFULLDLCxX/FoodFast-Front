@@ -1,8 +1,8 @@
-export interface CategoryParams {
+export type CategoryParams = {
   id: number;
   name: string;
   image: string;
-}
+};
 
 export type ProductParams = {
   id: number;
@@ -33,19 +33,26 @@ export type OrderParams = {
   code: number;
   price: number;
   quantity: number;
+  productId: number;
 };
 
 export type OrdersParams = {
-  name: string;
-  price: number;
+  note: string;
+  code: number;
   quantity: number;
   productId: number;
-}
+  paymentId: number;
+};
 
-export type PaymentsParams = {
+export type PaymentParams = {
+  paymentId: number;
   code: number;
-  total: number;
-  status: 'PAID' | 'PEDDING';
-  change: number;
-  userId: number;
-}
+  total?: number;
+  status?: 'PAID' | 'PEDDING';
+  change?: number;
+  userId?: number;
+};
+
+export type UserParams = {
+  name: string;
+};

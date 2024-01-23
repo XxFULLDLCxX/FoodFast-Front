@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import { ProductParams } from '../../utils/protocols';
+import { useEffect, useState } from 'react';
 import { FaCheck } from 'react-icons/fa6';
-import { useState } from 'react';
-import { ProductBanner } from './Products/Banner';
-import { useOrdersContext } from '../../utils/context';
-import { DetailsDialog } from './OrderDetails/DetailsDialog';
+import { useOrdersContext } from '../../../utils/context';
+import { ProductParams } from '../../../utils/protocols';
+import { DetailsDialog } from '../OrderDetails/DetailsDialog';
+import { ProductBanner } from './Banner';
 
 type ProductProps = {
   data: ProductParams;
@@ -13,21 +13,24 @@ type ProductProps = {
   setInOrder: React.Dispatch<React.SetStateAction<number[]>>;
 };
 
-export default function Product({ data, line }: ProductProps) {
+export default function Product({ data, line, isInOrder }: ProductProps) {
   const colors = ['#f96666', '#125c13', '#ffeb70'];
   const bg = colors[line % colors.length];
   const formatedPrice = (data.price / 100).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
-  const [isSelected, setIsSelected] = useState(data.id === 170);
+  const [isSelected, setIsSelected] = useState(false);
   const { setOrder } = useOrdersContext();
+  useEffect(() => {});
   const press = () => {
+    console.log(data.id); 
+    
     setIsSelected(true);
-    setOrder((prev) => ({ ...prev, name: data.name, price: data.price }));
+    setOrder((prev) => ({ ...prev, name: data.name, price: data.price, productId: data.id }));
   };
   return (
     <>
       {isSelected && <DetailsDialog product={data} bg={bg} setIsSelected={setIsSelected} />}
       <ProductBanner $banner={data.banner} $bg={bg} onClick={press}>
-        {isSelected && (
+        {(isSelected || isInOrder) && (
           <Selected>
             <FaCheck />
           </Selected>

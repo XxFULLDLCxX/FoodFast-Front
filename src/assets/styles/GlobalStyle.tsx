@@ -15,11 +15,12 @@ const GlobalStyle = createGlobalStyle`
   ::-webkit-scrollbar {
     width: 0;
   } 
-  * {
+  :not(path) {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
+    color: color;
   }
 
   input, button {

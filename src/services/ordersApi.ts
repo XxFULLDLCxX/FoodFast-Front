@@ -1,4 +1,11 @@
-import { AdditionalsParams, CategoryParams, OrdersParams, PaymentsParams, ProductParams } from '../utils/protocols';
+import {
+  AdditionalsParams,
+  CategoryParams,
+  OrderParams,
+  OrdersParams,
+  PaymentParams,
+  ProductParams,
+} from '../utils/protocols';
 import instance from './api';
 
 export async function getCategories() {
@@ -21,10 +28,25 @@ export async function getProductAdditionals(productId: number) {
   return (await instance.get<AdditionalsParams[]>(`/products/${productId}/additionals`)).data;
 }
 
-export async function postOrders(params: OrdersParams) {
-  return (await instance.post(`/orders`, params))
+type OrdersResponse = OrdersParams & { id: number };
+
+export async function getOrdersByCode(code: number): Promise<OrdersResponse[]> {
+  return (await instance.get(`/orders/${code}`)).data;
 }
 
-export async function postPayments(params: PaymentsParams) {
-  return (await instance.post(`/orders`, params))
+export async function postOrders(params: OrdersParams): Promise<OrdersResponse> {
+  return (await instance.post(`/orders`, params)).data;
+}
+
+type AdditionalParams = {
+  additionalId: number;
+  orderId: number;
+};
+
+export async function postOrderAdditionals(params: AdditionalParams) {
+  return (await instance.post(`/orders/additionals`, params)).data;
+}
+
+export async function postPayments(params: Partial<PaymentParams>): Promise<PaymentParams & { id: number }> {
+  return (await instance.post(`/payments`, params)).data;
 }

@@ -20,15 +20,23 @@ export function DetailsDialog({ product, bg, setIsSelected }: DetailsDialogProps
     setIsSelected(false);
   };
   return (
-    <Container>
-      <Exit onClick={press} />
+    <Dialog>
+      <Header>
+        <Exit onClick={press} />
+        <h2>Revise seu pedido!</h2>
+      </Header>
       <Product data={product} bg={bg} />
       <Additionals productId={product.id} />
       <Notes />
       <Order />
       <Confirm />
-    </Container>
+    </Dialog>
   );
 }
 
-const Container = styled(Dialog)``;
+const Header = styled.div`
+  h2 {
+    font-weight: 700;
+    font-size: 32px;
+  }
+`;
