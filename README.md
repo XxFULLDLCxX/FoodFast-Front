@@ -1,7 +1,10 @@
 # FastFood-Front
 
-Este é o front-end do FastFood, um aplicativo de comidas rápidas que permite uma seleção rápida de produtos. O aplicativo possui três rotas principais:
+Este é o front-end do FastFood, um aplicativo de comidas rápidas que permite uma seleção rápida de produtos. 
 
+Deploy na Vercel: https://fastfood-444c43.vercel.app
+
+O aplicativo possui três rotas principais:
 + `/orders` - Responsável pela visualização e seleção de produtos.
    - `/orders/payments` - Responsável pelo processamento dos pagamentos.
 + `/kitchen` - Responsável por exibir à cozinha os pedidos a serem preparados.
