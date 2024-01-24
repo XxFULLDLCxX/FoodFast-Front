@@ -14,7 +14,7 @@ Este é o front-end do FastFood, um aplicativo de comidas rápidas que permite u
 ```bash
 npm i
 ```
-3. Preencha o arquivo `.env.development` com base no `.env.example`. O `VITE_API_URL` deve ser a URL base da API (FastFood-Back).
+3. Preencha o arquivo `.env.development` com base no `.env.example`. O `VITE_API_URL` deve ser a URL base da API ([FastFood-Back](https://github.com/XxFULLDLCxX/FastFood-Back)).
   
 4. Execute o back-end e o front-end em modo de desenvolvimento com o comando:
 ```bash
