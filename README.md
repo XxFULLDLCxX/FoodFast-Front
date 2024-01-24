@@ -1,51 +1,22 @@
-# Weather - Front
+# FastFood-Front
 
-<details>
-  <summary>English Version</summary>
-  <hr>
-  This is a front-end application that utilizes the OpenWeatherMap API to fetch weather information for any city in the world. It also features a Recharts graph for visual representation of the data.
-  <hr>
+Este é o front-end do FastFood, um aplicativo de comidas rápidas que permite uma seleção rápida de produtos. O aplicativo possui três rotas principais:
 
-Deployed on Vercel: [weather-front-444c43.vercel.app](https://weather-front-444c43.vercel.app)
++ `/orders` - Responsável pela visualização e seleção de produtos.
+   - `/orders/payments` - Responsável pelo processamento dos pagamentos.
++ `/kitchen` - Responsável por exibir à cozinha os pedidos a serem preparados.
++ `/retirada` - Responsável por mostrar ao cliente o status do seu pedido.
 
-  <hr/>
+## Como executar localmente:
 
-### - How to run locally:
-
+1. Clone o repositório.
+2. Instale as dependências com o comando:
 ```bash
 npm i
 ```
-#### Copy the `.env.example` and set your key in your `.env`
-
+3. Preencha o arquivo `.env.development` com base no `.env.example`. O `VITE_API_URL` deve ser a URL base da API (FastFood-Back).
+  
+4. Execute o back-end e o front-end em modo de desenvolvimento com o comando:
 ```bash
 npm run dev
 ```
-
-<hr>
-<hr>
-<hr>
-
-</details>
-
-Aplicação Front que consume a OpenWeatherMap e para obter informações sobre o clima de qualquer cidade do mundo, há também a presença de um gráfico recharts.
-
-<hr>
-
-Deploy on Vercel: [weather-front-444c43.vercel.app](https://weather-front-444c43.vercel.app)
-
-<hr>
-
-### - Como rodar localmente:
-
-```bash
-npm i
-```
-#### Siga o `.env.example` e defina sua key no seu `.env`
-
-```bash
-npm run dev
-```
-
-<hr>
-<hr>
-<hr>
