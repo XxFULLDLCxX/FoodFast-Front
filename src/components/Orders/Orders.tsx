@@ -12,7 +12,7 @@ export function Orders() {
   const [orderAdditionals, setOrderAdditionals] = useState<{
     [key: OrderAdditionalsResponse['orderId']]: AdditionalResponse[];
   }>({});
-  const { payment } = useOrdersContext();
+  const { payment, confirmOrder } = useOrdersContext();
 
   useEffect(() => {
     if (payment.code !== 0) {
@@ -31,19 +31,19 @@ export function Orders() {
         })
         .catch((err) => console.log(err));
     }
-  }, []);
+  }, [confirmOrder.order, confirmOrder.additionals]);
 
-  const totalPrice = orders.reduce((n, { products, id }) => {
+  const totalPrice = orders.reduce((n, { quantity, products, id }) => {
     if (id in orderAdditionals) {
-      return n + products.price + orderAdditionals[id].reduce((n, { price }) => n + price, 0);
-    } else return n + products.price;
+      return n + quantity * products.price + orderAdditionals[id].reduce((n, { price }) => n + price, 0);
+    } else return n + quantity * products.price;
   }, 0);
 
   return (
     <Container>
       <ul>
         {orders.map(({ products, ...order }) => (
-          <>
+          <React.Fragment key={order.id}>
             <li className="product">
               {order.quantity} x {products.name} <span>R${formatedPrice(products.price)}</span>
             </li>
@@ -56,7 +56,7 @@ export function Orders() {
                   </li>
                 </React.Fragment>
               ))}
-          </>
+          </React.Fragment>
         ))}
       </ul>
       <h2>Total do Pedido: </h2>
