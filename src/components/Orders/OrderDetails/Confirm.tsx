@@ -1,17 +1,12 @@
 import styled from 'styled-components';
 import { postOrderAdditionals, postOrders, postPayments } from '../../../services/ordersApi';
 import { useOrdersContext } from '../../../utils/context';
-import { useState } from 'react';
-import { OrdersParams } from '../../../utils/protocols';
 
 type ConfirmProps = {
   setIsSelected: React.Dispatch<React.SetStateAction<boolean>>;
 };
-type OrderResponse = OrdersParams & { id: number };
-
 export function Confirm({ setIsSelected }: ConfirmProps) {
-  const [confirmOrder, setConfirmOrder] = useState<OrderResponse | undefined>(undefined);
-  const { payment, order, setPayment, setOrder } = useOrdersContext();
+  const { payment, order, setPayment, setOrder, setConfirmOrder } = useOrdersContext();
 
   const addPayment = () => {
     console.log(payment);
@@ -31,22 +26,25 @@ export function Confirm({ setIsSelected }: ConfirmProps) {
     const { note, quantity, productId } = order;
     postOrders({ code, note, quantity, productId, paymentId })
       .then((data) => {
-        setConfirmOrder(data);
+        setConfirmOrder((prev) => ({ ...prev, order: true }));
         addOrderAddtionals(data.id);
         console.log('addOrder OK', data);
       })
       .catch((err) => console.log(err));
   };
-  const addOrderAddtionals = (id: number | undefined = confirmOrder?.id) => {
+  const addOrderAddtionals = (id?: number) => {
     if (id !== undefined) {
       order.additionals.map((additional) => {
         postOrderAdditionals({ additionalId: additional.id, orderId: id })
           .then((data) => {
             console.log('funcionou');
             console.log('addAdditional OK', data);
+            setConfirmOrder((prev) => ({ ...prev, additionals: true }));
           })
           .catch((err) => console.log(err));
       });
+    } else {
+      setConfirmOrder((prev) => ({ ...prev, additionals: true }));
     }
   };
   const press = async () => {

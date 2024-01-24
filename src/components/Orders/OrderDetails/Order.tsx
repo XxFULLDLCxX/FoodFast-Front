@@ -7,7 +7,7 @@ import { useOrdersContext } from '../../../utils/context';
 
 export function Order() {
   const { order } = useOrdersContext();
-  const totalPrice = order.price + order.additionals.reduce((n, m) => n + m.price, 0);
+  const totalPrice = order.quantity * order.price + order.additionals.reduce((n, m) => n + m.price, 0);
   return (
     <Container>
       <ul>

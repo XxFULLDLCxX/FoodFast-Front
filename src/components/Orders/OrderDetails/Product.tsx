@@ -23,7 +23,7 @@ export function Product({ data, bg }: ProductProps) {
       <Details>
         <h2>{data.name}</h2>
         <p>{data.details}</p>
-        <h3>R${formatedPrice(data.price)}</h3>
+        <h3>R${formatedPrice(order.quantity * data.price)}</h3>
         <QuantityCounter>
           <FaMinus
             onClick={() => order.quantity > 1 && setOrder((prev) => ({ ...prev, quantity: prev.quantity - 1 }))}
